@@ -2,17 +2,38 @@
 <h2>Signup</h2>
 
 <form action="/auth/signup" method="POST" id="form-container">
+ 
   <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <input id="username" type="text" name="username" placeholder="User name">
 
   <br><br>
 
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
   <br>
-
-  
-
+<label for="email">Email</label>
+  <input id="email" type="email" name="email" placeholder="Your email">
+  <br>
+ <label for="name">Name</label>
+  <input id="name" type="text" name="name" placeholder="Name">
+<br>
+   <label for="surname">Surname</label>
+  <input id="surname" type="text" name="surname" placeholder="Surname">
+<br>
+   <input type="radio" name="sex" value="male" checked> Male<br>
+  <input type="radio" name="sex" value="female"> Female<br>
+<br>
+   <label for="age">Age (min 18yo)</label>
+ <input type="number" name="age" min="18">
+<br>
+ <label for="telephone">Telephone</label>
+  <input type="tel" name="telephone">
+<br>
+<label for="biography">Biography</label>
+<br>
+<textarea name="bio" rows="10" cols="70">Write your biography</textarea>
+ <br>
+ 
   {{#if message }}
     <div class="error-message">{{ message }}</div>
   {{/if}}
@@ -26,3 +47,4 @@
     <a href="/auth/login">Login</a>
   </p>
 </form>
+
