@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: String,
+  username: {type:String,unique:true},
   password: String,
-  email: String,
+  email: {type:String,unique:true},
 
   name: String,
   surname: String,
   age: Number,
-  sex: Boolean,
-
+  sex: { type: String, enum: ['male','female'] },  
+  telephone:Number,
   profilePic: String,
   bio: String,
   rp: [{type: Schema.Types.ObjectId, ref: 'User'}],
