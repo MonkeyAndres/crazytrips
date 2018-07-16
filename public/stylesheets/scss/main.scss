@@ -19,7 +19,7 @@ header {
     a{color: $primary-color-text}
 
     div{
-        width: 95%;
+        width: 90%;
         max-width: 1000px;
         margin: 0 auto;
 
@@ -27,7 +27,7 @@ header {
         justify-content: space-between;
         align-items: center;
 
-        padding: 0.7em;
+        padding: 0.7em 0;
 
         a{
             text-decoration: none;
