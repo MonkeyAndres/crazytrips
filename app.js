@@ -73,5 +73,7 @@ app.use('/', index);
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
       
+const tripRoutes = require('./routes/tripRouter');
+app.use('/trips', tripRoutes);
 
 module.exports = app;
