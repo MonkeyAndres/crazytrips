@@ -7,9 +7,23 @@
 <link rel="stylesheet" href="/stylesheets/froala/plugins/table.min.css" />
 
 <form action="/trips/create" method="POST">
-    <label for=""></label>
+    <label for="destination">Destino: </label>
+    <input type="text" name="destination"> <br><br>
 
-    <textarea name="description" id="editor"></textarea> <br>
+    <label for="price">Precio: </label>
+    <input type="text" name="price"> <br><br>
+
+    <textarea name="description" id="editor"></textarea> <br><br>
+
+    <label for="maxTravelers">Maximo viajeros: </label>
+    <input type="number" name="maxTravelers"> <br><br>
+
+    <label for="startDate">Fecha Inicio: </label>
+    <input type="date" name="startDate"> <br><br>
+
+    <label for="endDate">Fecha Fin: </label>
+    <input type="date" name="endDate"> <br><br>
+
     <input type="submit">
 </form>
 

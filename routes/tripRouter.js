@@ -17,7 +17,20 @@ router.get("/create", (req, res, next) => {
 });
 
 router.post("/create", (req, res, next) => {
-  res.send(req.body.description);
+    const {destination, price, description, maxTravelers, startDate, endDate} = req.body;
+
+    const newTrip = new Trip({
+        destination,
+        price,
+        description,
+        maxTravelers,
+        startDate,
+        endDate
+    })
+
+    newTrip.save()
+    .then(data => res.redirect('/'))
+    .catch(err => next(err))
 });
 
 router.post("/upload_image", (req, res, next) => {
