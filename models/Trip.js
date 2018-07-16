@@ -3,6 +3,7 @@ const Schema   = mongoose.Schema;
 
 const tripSchema = new Schema({
   creator: {type: Schema.Types.ObjectId, ref: 'User'},
+  title: String,
   destination: String,
   price: Number,
 
