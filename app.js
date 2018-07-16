@@ -12,7 +12,6 @@ const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
-    
 
 mongoose.Promise = Promise;
 mongoose
@@ -53,7 +52,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
   
 
 // default value for title local
-app.locals.title = 'MonkeyAndres';
+app.locals.title = 'CrazyTrips';
 
 
 // Enable authentication using session + passport

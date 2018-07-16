@@ -1,0 +1,35 @@
+#section1 {
+  height: calc(100vh - 78px);
+  background-image: url("../images/section1BG.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+  #section1 .header-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: calc(100vh - 78px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; }
+    #section1 .header-container .box {
+      width: 50%;
+      padding: 1.3em;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 3px;
+      text-align: center; }
+      #section1 .header-container .box h2 {
+        font-size: 40px;
+        color: #333;
+        font-weight: 300;
+        margin-bottom: 10px; }
+      #section1 .header-container .box p {
+        font-size: 18px;
+        color: #333; }
+
+#section2 {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2em 0; }

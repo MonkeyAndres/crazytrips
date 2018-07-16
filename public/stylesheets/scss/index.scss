@@ -1,0 +1,47 @@
+#section1{
+    height: calc(100vh - 78px);
+    background-image: url('../images/section1BG.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .header-container{
+        width: 90%;
+        max-width: 1000px;
+        margin: 0 auto;
+        height: calc(100vh - 78px);
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+
+        .box{
+            width: 50%;
+            padding: 1.3em;
+            background-color: rgba($color: #ffffff, $alpha: 0.6);
+            border-radius: 3px;
+
+            text-align: center;
+
+            h2{
+                font-size: 40px;
+                color: #333;
+                font-weight: 300;
+                margin-bottom: 10px;
+            }
+
+            p{
+                font-size: 18px;
+                color: #333;
+            }
+        }
+    }
+}
+
+#section2{
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2em 0;
+}

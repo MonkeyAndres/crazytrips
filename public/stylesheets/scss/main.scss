@@ -1,0 +1,49 @@
+@import 'palette';
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+header {
+    
+    position: sticky;
+    top: 0;
+    background-color: $primary-color;
+
+    a{color: $primary-color-text}
+
+    div{
+        width: 95%;
+        max-width: 1000px;
+        margin: 0 auto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 0.7em;
+
+        a{
+            text-decoration: none;
+            h1{font-weight: 300}
+        }
+
+        ul{
+            display: flex;
+            list-style-type: none;
+            li{
+                margin: 1em;
+                a{
+                    text-decoration: none;
+                    &:hover{text-decoration: underline}
+                }
+            }
+        }
+    }
+}
