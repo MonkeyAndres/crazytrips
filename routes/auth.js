@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require("passport");
+const { ifLogged } = require("../middleware/logged");
 const authRoutes = express.Router();
 
 const User = require("../models/User");
@@ -63,7 +64,7 @@ authRoutes.post("/signup", (req, res, next) => {
     });
 });
 
-authRoutes.get("/logout", (req, res) => {
+authRoutes.get("/logout", ifLogged, (req, res) => {
   req.logout();
   res.redirect("/");
 });
@@ -75,36 +76,10 @@ authRoutes.get('/confirm/:id', (req, res, next) => {
   })
   .catch(err => next(err))
 })
-authRoutes.post('/send-email', (req, res, next) => {
-  let { email, subject, message } = req.body;
-  let transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      user: 'your email address',
-      pass: 'your email password'
-    }
-  });
-  transporter.sendMail({
-    from: "Perro",
-    to: email, 
-    subject: subject, 
-    text: message,
-    html: `<b>${message}</b>`
-  })
-  .then(info => res.render('message', {email, subject, message, info}))
-  .catch(error => console.log(error));
-});
 
-
-
-
-
-authRoutes.post('/edit-user',(req,res,next)=>{
-
-  
-  
-    const {name,surname,sex,age,telephone,bio}=req.body;
-    const update = {name,surname,sex,age,telephone,bio};
+authRoutes.post('/edit-user', ifLogged, (req, res,next ) =>{  
+    const {name, surname, sex, age, telephone, bio} = req.body;
+    const update = {name, surname, sex, age, telephone, bio};
     if (name==="") delete update.name;
     if (surname==="") delete update.surname;
     if (sex==="") delete update.sex;
@@ -113,17 +88,13 @@ authRoutes.post('/edit-user',(req,res,next)=>{
     if (bio==="") delete update.bio;
 
     User.findByIdAndUpdate(req.user._id, update)
-    .then(
-      res.render("auth/edit-user", { message: "User edited" })
-    ) 
- 
-   .catch(error=>console.log(error));
-
+    .then(user => res.render("auth/edit-user", { message: "User edited" })) 
+    .catch(error=>console.log(error));
 })
 
-authRoutes.get('/edit-user',(req,res,next)=>{
-
-  res.render("auth/edit-user")})
+authRoutes.get('/edit-user', ifLogged, (req,res,next)=>{
+  res.render("auth/edit-user");
+})
 
 
 module.exports = authRoutes;

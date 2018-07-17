@@ -8,11 +8,17 @@
   <body>
     <header>
       <div>
-        <a href="/"><h1>CrazyTrips</h1></a>
+        <a href="/"><h1>{{title}}</h1></a>
         <ul>
+          {{#if user}}
+          <li><a href="/auth/logout">Log Out</a></li>
+          <li><a href="/profile">My Profile</a></li>
+          {{/if}}
+
+          {{#unless user}}
           <li><a href="/auth/login">Log In</a></li>
           <li><a href="/auth/signup">Sign Up</a></li>
-
+          {{/unless}}
         </ul>
       </div>
     </header>

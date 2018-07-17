@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const { ifLogged } = require('../middleware/logged');
 
 const Trip = require("../models/Trip");
 const FroalaEditor = require("../node_modules/wysiwyg-editor-node-sdk/lib/froalaEditor.js");
+
+router.use(ifLogged);
 
 router.get("/", (req, res, next) => {
   Trip.find()
