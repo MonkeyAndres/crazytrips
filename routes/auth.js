@@ -97,4 +97,25 @@ authRoutes.get('/edit-user', ifLogged, (req,res,next)=>{
 })
 
 
+authRoutes.get('/edit-password',(req,res,next)=>{
+  res.render("auth/edit-password")
+})
+
+authRoutes.post('/edit-password',(req,res,next)=>{  
+      if (bcrypt.compareSync(req.body.currentPassword,req.user.password)){
+        if (req.body.password!=req.body.passwordConfirm)
+           res.render("auth/edit-password", { message: "Password confirm is not equal" })
+        else {
+        const salt = bcrypt.genSaltSync(bcryptSalt);
+        const hashPass = bcrypt.hashSync(req.body.password, salt);  
+        User.findByIdAndUpdate(req.user._id,{password:hashPass})
+        .then((user)=>{
+          console.log(`${user} password changed`)
+            res.render("auth/edit-password",{ message: "Password changed" })
+        })
+        .catch(error=>console.log(error));
+      }
+    }
+})
+
 module.exports = authRoutes;
