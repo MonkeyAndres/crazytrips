@@ -30,10 +30,9 @@ authRoutes.get("/signup", (req, res, next) => {
 });
 
 authRoutes.post("/signup", (req, res, next) => {
-  const {username,password,email,name,surname,sex,age,telephone,bio} = req.body;
+  const {username,password,email,name,surname,sex,age} = req.body;
 
-  if (username === "" || password === "" || email === "" || name === "" || 
-      surname === "" || age === "" || telephone === "" || bio === "") {
+  if (username === "" || password === "" || email === "" || name === "" || surname === "" || age === "") {
     res.render("auth/signup", { message: "Fill all the information!!" });
     return;
   }
@@ -49,8 +48,6 @@ authRoutes.post("/signup", (req, res, next) => {
     surname,
     sex,
     age,
-    telephone,
-    bio
   });
 
   newUser.save()
