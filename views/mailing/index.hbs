@@ -1,7 +1,9 @@
-<body>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Account</title>
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
-
         *{
             margin: 0; padding: 0; border: 0;
             box-sizing: border-box;
@@ -13,11 +15,9 @@
             background-color: #2196F3;
             color: #ffffff;
             height: 500px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            
+            text-align: center;
+            padding-top: 130px;
         }
 
         .container h1, .container h2{ font-weight: 300 }
@@ -34,13 +34,15 @@
         }
         button a{color: #ffffff; text-decoration: none}
     </style>
-
+</head>
+<body>
     <div class="container">
         <h1>CrazyTrips</h1>
-        <h2>Hello {{user}}, thanks for Register!</h2>
+        <h2>Hello {{user.username}}, thanks for Register!</h2>
         <p>Please click the following link for confirm your account.</p>
         <button>
-            <a href="{{link}}">Confirm Account</a>
+            <a href="http://localhost:3000/auth/confirm/{{user._id}}" style="color: white">Confirm Account</a>
         </button>
     </div>
 </body>
+</html>
