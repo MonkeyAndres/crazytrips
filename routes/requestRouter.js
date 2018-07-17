@@ -18,4 +18,22 @@ router.get('/new/:id', (req, res, next) => {
     .catch(err => next(err))
 })
 
+
+
+router.get('/requests',(req,res,next)=>{
+    console.log(req.user._id)
+    Request.find({user:req.user._id})
+    .populate('trip')
+    .then(arrayRequest=>{
+
+        res.render('trips/list-request',{arrayRequest})
+
+    })
+    
+    
+  })
+  
+
+
+
 module.exports = router;
