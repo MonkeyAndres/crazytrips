@@ -20,6 +20,11 @@ passport.use(new LocalStrategy((username, password, next) => {
       return;
     }
 
+    if (!foundUser.status) {
+      next(null, false, { message: 'You need to confirm your user' });
+      return;
+    }
+
     next(null, foundUser);
   });
 }));

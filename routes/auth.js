@@ -71,4 +71,12 @@ authRoutes.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
+authRoutes.get('/confirm/:id', (req, res, next) => {
+  User.findByIdAndUpdate(req.params.id, {status: true})
+  .then(user => {
+    res.render('auth/login', {message: "User Confirmed! Please Log in!"})
+  })
+  .catch(err => next(err))
+})
+
 module.exports = authRoutes;
