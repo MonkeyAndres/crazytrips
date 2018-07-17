@@ -99,5 +99,31 @@ authRoutes.post('/send-email', (req, res, next) => {
 
 
 
+authRoutes.post('/edit-user',(req,res,next)=>{
+
+  
+  
+    const {name,surname,sex,age,telephone,bio}=req.body;
+    const update = {name,surname,sex,age,telephone,bio};
+    if (name==="") delete update.name;
+    if (surname==="") delete update.surname;
+    if (sex==="") delete update.sex;
+    if (age==="") delete update.age;
+    if (telephone==="") delete update.telephone;
+    if (bio==="") delete update.bio;
+
+    User.findByIdAndUpdate(req.user._id, update)
+    .then(
+      res.render("auth/edit-user", { message: "User edited" })
+    ) 
+ 
+   .catch(error=>console.log(error));
+
+})
+
+authRoutes.get('/edit-user',(req,res,next)=>{
+
+  res.render("auth/edit-user")})
+
 
 module.exports = authRoutes;
