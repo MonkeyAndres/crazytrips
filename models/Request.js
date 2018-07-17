@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const requestSchema = new Schema({
   trip: {type: Schema.Types.ObjectId, ref: 'Trip'},
   user: {type: Schema.Types.ObjectId, ref: 'User'},
-  status: Boolean,
+  status: {type: Boolean, default: false},
 
   message: String,
 }, {

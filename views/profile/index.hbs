@@ -13,5 +13,15 @@
 
 <a href="/auth/edit-user">Edit your profile</a>
 <a href="/auth/edit-password">Edit your password</a>
-
 </div>
+<br><br>
+
+<h2>Viajes Subscritos</h2>
+{{#each resquestedTrips}}
+    <a href="/trips/{{_id}}">{{destination}}</a>
+{{/each}}
+
+<h2>Viajes Creados</h2>
+{{#each createdTrips}}
+    {{title}} <br>
+{{/each}}

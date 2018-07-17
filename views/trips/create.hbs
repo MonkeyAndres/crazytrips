@@ -1,34 +1,47 @@
 <!-- Froala Stuff -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"
+/>
 <link href='/stylesheets/froala/froala_editor.min.css' rel='stylesheet' type='text/css' />
 <link href='/stylesheets/froala/froala_style.min.css' rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="/stylesheets/froala/plugins/code_view.min.css" />
 <link rel="stylesheet" href="/stylesheets/froala/plugins/image.min.css" />
 <link rel="stylesheet" href="/stylesheets/froala/plugins/table.min.css" />
 
-<form action="/trips/create" method="POST">
-    <label for="title">Titulo: </label>
-    <input type="text" name="title"> <br><br>
+<link rel="stylesheet" href="/stylesheets/auth.css">
 
-    <label for="destination">Destino: </label>
-    <input type="text" name="destination"> <br><br>
+<div class="form-container">
+    <h2>Create trip</h2>
+    <form action="/trips/create" method="POST">
+        <label for="title">Titulo: </label>
+        <input type="text" name="title">
+        <br>
 
-    <label for="price">Precio: </label>
-    <input type="text" name="price"> <br><br>
+        <label for="destination">Destino: </label>
+        <input type="text" name="destination">
+        <br>
 
-    <textarea name="description" id="editor"></textarea> <br><br>
+        <label for="price">Precio: </label>
+        <input type="text" name="price">
+        <br>
 
-    <label for="maxTravelers">Maximo viajeros: </label>
-    <input type="number" name="maxTravelers"> <br><br>
+        <textarea name="description" id="editor"></textarea>
+        <br>
 
-    <label for="startDate">Fecha Inicio: </label>
-    <input type="date" name="startDate"> <br><br>
+        <label for="maxTravelers">Maximo viajeros: </label>
+        <input type="number" name="maxTravelers">
+        <br>
 
-    <label for="endDate">Fecha Fin: </label>
-    <input type="date" name="endDate"> <br><br>
+        <label for="startDate">Fecha Inicio: </label>
+        <input type="date" name="startDate">
+        <br>
 
-    <input type="submit">
-</form>
+        <label for="endDate">Fecha Fin: </label>
+        <input type="date" name="endDate">
+        <br>
+
+        <button>Create</button>
+    </form>
+</div>
 
 <!-- Include JS file. -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

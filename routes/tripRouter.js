@@ -23,6 +23,7 @@ router.post("/create", (req, res, next) => {
     const {title, destination, price, description, maxTravelers, startDate, endDate} = req.body;
 
     const newTrip = new Trip({
+        creator: req.user._id,
         title,
         destination,
         price,
