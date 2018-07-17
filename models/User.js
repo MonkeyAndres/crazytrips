@@ -15,6 +15,8 @@ const userSchema = new Schema({
   bio: String,
   rp: [{type: Schema.Types.ObjectId, ref: 'User'}],
 
+  status: Boolean,
+
   socialLinks: {
     facebook: String,
     instagram: String,
