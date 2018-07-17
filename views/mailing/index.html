@@ -1,0 +1,46 @@
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+
+        *{
+            margin: 0; padding: 0; border: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
+        }
+
+        .container{
+            background-color: #2196F3;
+            color: #ffffff;
+            height: 500px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container h1, .container h2{ font-weight: 300 }
+        h1{font-size: 50px}
+        h2{font-size: 26px}
+
+        button{
+            padding: 10px 15px;
+            border-radius: 3px;
+            margin: 1em;
+            text-transform: uppercase;
+            font-weight: bold;
+            background-color: #FFC107
+        }
+        button a{color: #ffffff; text-decoration: none}
+    </style>
+
+    <div class="container">
+        <h1>CrazyTrips</h1>
+        <h2>Hello {{user}}, thanks for Register!</h2>
+        <p>Please click the following link for confirm your account.</p>
+        <button>
+            <a href="{{link}}">Confirm Account</a>
+        </button>
+    </div>
+</body>
