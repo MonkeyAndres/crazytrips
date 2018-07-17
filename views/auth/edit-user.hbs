@@ -1,0 +1,38 @@
+<h2>Edit User</h2>
+
+<form action="/auth/edit-user" method="POST" id="form-container">
+
+    <br>
+
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" placeholder="Name">
+    <br>
+    <label for="surname">Surname</label>
+    <input id="surname" type="text" name="surname" placeholder="Surname">
+    <br>
+    <input type="radio" name="sex" value="male" checked> Male
+    <br>
+    <input type="radio" name="sex" value="female"> Female
+    <br>
+    <br>
+    <label for="age">Age (min 18yo)</label>
+    <input type="number" name="age" min="18">
+    <br>
+    <label for="telephone">Telephone</label>
+    <input type="tel" name="telephone">
+    <br>
+    <label for="biography">Biography</label>
+    <br>
+    <textarea name="bio" rows="10" cols="70">Write your biography</textarea>
+    <br> {{#if message }}
+    <div class="error-message">{{ message }}</div>
+    {{/if}}
+
+    <br>
+    <br>
+    <button>Edit profile</button>
+
+    <a href="/edit-password">Change your password</a>
+
+</form>
+

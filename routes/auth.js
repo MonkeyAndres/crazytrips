@@ -78,5 +78,55 @@ authRoutes.get('/confirm/:id', (req, res, next) => {
   })
   .catch(err => next(err))
 })
+authRoutes.post('/send-email', (req, res, next) => {
+  let { email, subject, message } = req.body;
+  let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'your email address',
+      pass: 'your email password'
+    }
+  });
+  transporter.sendMail({
+    from: "Perro",
+    to: email, 
+    subject: subject, 
+    text: message,
+    html: `<b>${message}</b>`
+  })
+  .then(info => res.render('message', {email, subject, message, info}))
+  .catch(error => console.log(error));
+});
+
+
+
+
+
+authRoutes.post('/edit-user',(req,res,next)=>{
+
+  
+  
+    const {name,surname,sex,age,telephone,bio}=req.body;
+    const update = {name,surname,sex,age,telephone,bio};
+    if (name==="") delete update.name;
+    if (surname==="") delete update.surname;
+    if (sex==="") delete update.sex;
+    if (age==="") delete update.age;
+    if (telephone==="") delete update.telephone;
+    if (bio==="") delete update.bio;
+
+    User.findByIdAndUpdate(req.user._id, update)
+    .then(
+      res.render("auth/edit-user", { message: "User edited" })
+    ) 
+ 
+   .catch(error=>console.log(error));
+
+})
+
+authRoutes.get('/edit-user',(req,res,next)=>{
+
+  res.render("auth/edit-user")})
+
 
 module.exports = authRoutes;
