@@ -53,7 +53,7 @@ router.post("/upload_image", (req, res, next) => {
 
 router.get('/:id',(req,res,next)=>{
 
-  Trip.findById(id)
+  Trip.findById(req.params.id)
   .populate('creator')
   .then(trip=>{
   
@@ -62,6 +62,8 @@ router.get('/:id',(req,res,next)=>{
   .catch(error=>console.log(error))
 
 })
+
+
 
 
 module.exports = router;
