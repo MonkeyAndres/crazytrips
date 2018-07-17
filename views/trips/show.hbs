@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="/stylesheets/profile.css">
+
+<div class="container">
+    <div class="userInfo">
+        <h2>{{trip.title}}</h2>
+        <p><b>Destination:</b> {{trip.destination}}</h3>
+        <p><b>Price:</b> {{trip.price}}</h3>
+        <p><b>Status:</b> {{trip.status}}</h3>
+        <p><b>Start Date:</b> {{trip.startDate}}</h3>
+        <p><b>End Date:</b> {{trip.endDate}}</h3>
+        <p><b>Creator:</b> {{trip.creator.username}}</p>
+
+        {{#if canRequest}}
+            <button><a href="/request/new/{{trip._id}}">Join travel</a></button>
+        {{else}}
+            <p><b>You have already joined!</b></p>
+        {{/if}}
+    </div>
+    <div class="trips">
+        {{{trip.description}}}
+    </div>
+</div>

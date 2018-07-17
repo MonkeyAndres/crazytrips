@@ -9,7 +9,7 @@ const tripSchema = new Schema({
 
   description: String,
   maxTravelers: Number,
-  status: Boolean,
+  status: {type: Boolean, default: false},
 
   startDate: Date,
   endDate: Date,
