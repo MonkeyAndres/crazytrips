@@ -4,6 +4,7 @@ const authRoutes = express.Router();
 const User = require("../models/User");
 const Trip = require("../models/Trip");
 const Request = require("../models/Request");
+const nodemailer = require("nodemailer");
 
 
 // Bcrypt to encrypt passwords
@@ -50,14 +51,22 @@ authRoutes.post("/signup", (req, res, next) => {
       if (err) {
         res.render("auth/signup", { message: "User/email already exists!!" });
       } else {
+
+        let email = req.body.email;
+        let transporter = nodemailer.createTransport({
+          service: 'Gmail',
+          auth: {
+            user: 'crazytrips@gmail.com',
+            pass: '12345'
+          }
+        });
+ //       transporter.sendMail({
+       
+ //       })
+
         res.redirect("/");
       }
     });
-
-
- 
-
-  
 
 });
 
@@ -65,5 +74,30 @@ authRoutes.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
+
+router.post('/send-email', (req, res, next) => {
+  let { email, subject, message } = req.body;
+  let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'your email address',
+      pass: 'your email password'
+    }
+  });
+  transporter.sendMail({
+    from: "Perro",
+    to: email, 
+    subject: subject, 
+    text: message,
+    html: `<b>${message}</b>`
+  })
+  .then(info => res.render('message', {email, subject, message, info}))
+  .catch(error => console.log(error));
+});
+
+
+
+
+
 
 module.exports = authRoutes;
