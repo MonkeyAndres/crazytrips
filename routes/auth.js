@@ -75,7 +75,7 @@ authRoutes.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.post('/send-email', (req, res, next) => {
+authRoutes.post('/send-email', (req, res, next) => {
   let { email, subject, message } = req.body;
   let transporter = nodemailer.createTransport({
     service: 'Gmail',
