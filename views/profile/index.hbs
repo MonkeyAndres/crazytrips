@@ -1,27 +1,39 @@
+<link rel="stylesheet" href="/stylesheets/profile.css">
 
-<div>
-<img src="" alt="">
-<h1>Username:{{user.username}}</h1>
-<h2>Name:{{user.name}}</h2>
-<h2>Surname:{{user.surname}}</h2>
-<h2>Age:{{user.age}}</h2>
-<h2>Sex:{{user.sex}}</h2>
-<h2>Biography:{{user.bio}}</h2>
-<h2>Telephone:{{user.telephone}}</h2>
-<h2>Reputation:{{user.rp.length}}</h2>
+<div class="container">
+    <div class="userInfo">
+        {{!-- <div><img src="" alt=""></div> --}}
+        <h2>{{user.username}}</h2>
+        <p>{{user.bio}}</p>
+        <p><b>Reputation:</b> {{user.rp.length}}</p>
+        <p><b>Age:</b> {{user.age}}</p>
+        <p><b>Sex:</b> {{user.sex}}</p>
+        <a href="/trips/requests">See my Trip Requests</a>
+        <a href="/auth/edit-user">Edit your profile</a>
+        <a href="/auth/edit-password">Edit your password</a>
+    </div>
+    <div class="trips">
+        <div class="title">
+            <h2>Viajes Creados</h2>
+            {{#if yourProfile}}
+            <a href="/trips/create">Create Trip</a>
+            {{/if}}
+        </div>
 
-
-<a href="/auth/edit-user">Edit your profile</a>
-<a href="/auth/edit-password">Edit your password</a>
+        <div class="tripContainer">
+            {{#each createdTrips}} 
+                <article>
+                    <h3><a href="/trips/{{_id}}">{{title}}</a></h3>
+                    <p><i>Destination:</i> {{destination}}</p>
+                    <p><i>Price:</i> {{price}}€</p>
+                    <p><i>Dates:</i> {{startDate}} - {{endDate}}</p>
+                    {{#if status}} 
+                        <p class="red">Status: Unavalible</p>
+                    {{else}}
+                        <p class="green">Status: Avalible</p>
+                    {{/if}}
+                </article>
+            {{/each}}
+        </div>
+    </div>
 </div>
-<br><br>
-
-<h2>Viajes Subscritos</h2>
-{{#each resquestedTrips}}
-    <a href="/trips/{{_id}}">{{destination}}</a>
-{{/each}}
-
-<h2>Viajes Creados</h2>
-{{#each createdTrips}}
-    {{title}} <br>
-{{/each}}

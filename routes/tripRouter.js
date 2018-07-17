@@ -34,7 +34,7 @@ router.post("/create", (req, res, next) => {
     })
 
     newTrip.save()
-    .then(data => res.redirect('/'))
+    .then(data => res.redirect('/profile'))
     .catch(err => next(err))
 });
 

@@ -1,0 +1,81 @@
+@import 'palette';
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 2em auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .userInfo{
+        width: 30%;
+        background-color: #eee;
+        padding: 1em;
+
+        h2{
+            font-weight: 300;
+            font-size: 28px;
+        }
+        p{margin: 10px 0}
+        a{
+            display: block;
+            color: $accent-color;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 0;
+            &:hover{text-decoration: underline}
+        }
+    }
+
+    .trips{
+        width: 68%;
+        padding: 1em;
+
+        .title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1em;
+
+            h2{
+                font-weight: normal;
+                font-size: 28px;
+            }
+            
+            a{
+                background-color: $accent-color;
+                color: #fff;
+                font-size: 14px;
+                text-transform: uppercase;
+                text-decoration: none;
+                font-weight: bold;
+                padding: 10px 15px;
+                border-radius: 3px;
+            }
+        }
+
+        .tripContainer>article{
+            background-color: #fff;
+            border-radius: 3px;
+            padding: 1em;
+            margin-bottom: 1em;
+            box-shadow: 0 1px 6px 0 rgba(0,0,0,0.2);
+
+            h3{
+                font-size: 22px;
+            }
+
+            a{
+                font-weight: bold;
+                color: $accent-color;
+                text-decoration: none;
+                margin: 10px 0;
+                &:hover{text-decoration: underline}
+            }
+
+            .red{color: red}
+            .green{color: forestgreen}
+        }
+    }
+}
