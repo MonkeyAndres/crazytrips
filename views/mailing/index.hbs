@@ -24,15 +24,16 @@
         h1{font-size: 50px}
         h2{font-size: 26px}
 
-        button{
+        a{
+            display: inline-block;
             padding: 10px 15px;
             border-radius: 3px;
             margin: 1em;
             text-transform: uppercase;
             font-weight: bold;
-            background-color: #FFC107
+            background-color: #FFC107;
+            color: #ffffff; text-decoration: none
         }
-        button a{color: #ffffff; text-decoration: none}
     </style>
 </head>
 <body>
@@ -40,9 +41,7 @@
         <h1>CrazyTrips</h1>
         <h2>Hello {{user.username}}, thanks for Register!</h2>
         <p>Please click the following link for confirm your account.</p>
-        <button>
-            <a href="http://localhost:3000/auth/confirm/{{user._id}}" style="color: white">Confirm Account</a>
-        </button>
+        <a href="http://localhost:3000/auth/confirm/{{user._id}}" style="color: white">Confirm Account</a>
     </div>
 </body>
 </html>
