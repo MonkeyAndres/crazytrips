@@ -50,4 +50,18 @@ router.post("/upload_image", (req, res, next) => {
   });
 });
 
+
+router.get('/:id',(req,res,next)=>{
+
+  Trip.findById(id)
+  .populate('creator')
+  .then(trip=>{
+  
+    res.render('trips/suscripted-trips',{trip})
+  })
+  .catch(error=>console.log(error))
+
+})
+
+
 module.exports = router;
