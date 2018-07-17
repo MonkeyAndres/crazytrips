@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
   Trip.find()
     .populate("creator")
     .then(trips => {
-      res.render("trip/index", { trips });
+      res.render("trips/index", { trips });
     });
 });
 
@@ -17,9 +17,10 @@ router.get("/create", (req, res, next) => {
 });
 
 router.post("/create", (req, res, next) => {
-    const {destination, price, description, maxTravelers, startDate, endDate} = req.body;
+    const {title, destination, price, description, maxTravelers, startDate, endDate} = req.body;
 
     const newTrip = new Trip({
+        title,
         destination,
         price,
         description,

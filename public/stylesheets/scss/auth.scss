@@ -1,0 +1,38 @@
+@import 'palette';
+
+.form-container{
+    width: 90%;
+    max-width: 1000px;
+    margin: 2em auto;
+
+    h2{font-weight: normal; font-size: 35px}
+
+    input, textarea{
+        background-color: #eee;
+        padding: 0.8em;
+        border-radius: 3px;
+        outline: none;
+    }
+
+    input, textarea{margin: 1em auto}
+    label{margin-right: 10px; font-size: 16px}
+
+    a{
+        text-decoration: none;
+        color: blue;
+        &:hover{text-decoration: underline}
+    }
+
+    button{
+        padding: 10px 15px;
+        text-transform: uppercase;
+        border-radius: 3px;
+        margin-bottom: 1em;
+        background-color: $accent-color;
+        color: $primary-color-text;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .error-message{color: red; font-size: 18px}
+}

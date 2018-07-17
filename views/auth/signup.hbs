@@ -1,13 +1,44 @@
-<!-- views/auth/signup.hbs -->
-<h2>Signup</h2>
+<link rel="stylesheet" href="/stylesheets/auth.css">
 
-<form action="/auth/signup" method="POST" id="form-container">
- 
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="User name">
+<div class="form-container">
+  <h2>Signup</h2>
 
-  <br><br>
+  <form action="/auth/signup" method="POST" id="form-container">
+    {{#if message }}
+      <div class="error-message">{{ message }}</div>
+    {{/if}}
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" placeholder="User name">
+    <br>
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" placeholder="Your password">
+    <br>
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" placeholder="Your email">
+    <br>
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" placeholder="Name">
+    <br>
+    <label for="surname">Surname</label>
+    <input id="surname" type="text" name="surname" placeholder="Surname">
+    <br>
+    <label for="sex">Sex</label>
+    <input type="radio" name="sex" value="male"> Male
+    <input type="radio" name="sex" value="female"> Female
+    <br>
+    <label for="age">Age (min 18yo)</label>
+    <input type="number" name="age" min="18" placeholder="Age">
+    <br>
+    <label for="telephone">Phone number</label>
+    <input type="tel" name="telephone" placeholder="Phone number">
+    <br>
+    <label for="biography">Biography</label><br>
+    <textarea name="bio" rows="7" cols="60" placeholder="Write your biography"></textarea>
+    <br>
+    <button>Create account</button>
+  </form>
 
+<<<<<<< HEAD
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
   <br>
@@ -47,4 +78,7 @@
     <a href="/auth/login">Login</a>
   </p>
 </form>
+=======
+>>>>>>> master
 
+</div>
