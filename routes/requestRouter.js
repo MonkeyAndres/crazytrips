@@ -20,17 +20,13 @@ router.get('/new/:id', (req, res, next) => {
 
 
 
-router.get('/requests',(req,res,next)=>{
-    console.log(req.user._id)
+router.get('/', (req,res,next)=>{
     Request.find({user:req.user._id})
     .populate('trip')
     .then(arrayRequest=>{
-
         res.render('trips/list-request',{arrayRequest})
-
     })
-    
-    
+    .catch(err => next(err))
   })
   
 

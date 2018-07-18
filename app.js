@@ -83,6 +83,6 @@ const profileRoutes = require('./routes/profile');
 app.use('/profile', profileRoutes);
 
 const requestRoutes = require('./routes/requestRouter');
-app.use('/request', requestRoutes);
+app.use('/requests', requestRoutes);
 
 module.exports = app;
