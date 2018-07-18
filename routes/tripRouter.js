@@ -3,6 +3,8 @@ const router = express.Router();
 const axios = require("axios");
 const { ifLogged } = require("../middleware/logged");
 
+const uploadCloud = require('../config/cloudinary');
+
 const Trip = require("../models/Trip");
 const Request = require("../models/Request");
 const FroalaEditor = require("../node_modules/wysiwyg-editor-node-sdk/lib/froalaEditor.js");
@@ -51,16 +53,8 @@ router.post("/Create", (req, res, next) => {
 });
 
 // Upload images froala
-router.post("/upload_image", (req, res, next) => {
-  FroalaEditor.Image.upload(req, "../public/uploads/", (err, data) => {
-    // Return data.
-    if (err) {
-      return res.send(JSON.stringify(err));
-    }
-
-    data.link = data.link.replace("/public", "");
-    res.send(data);
-  });
+router.post("/upload_image", uploadCloud.single('file'), (req, res, next) => {
+  res.send({"link": req.file.url});
 });
 
 // Show specific trip
