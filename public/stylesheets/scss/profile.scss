@@ -19,28 +19,11 @@
         }
         p{margin: 10px 0}
         a{
-            display: block;
             color: $accent-color;
             text-decoration: none;
             font-weight: bold;
             margin: 10px 0;
             &:hover{text-decoration: underline}
-        }
-
-        button{
-            background-color: $accent-color;
-            color: #fff;
-            font-size: 14px;
-            text-transform: uppercase;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 15px;
-            border-radius: 3px;
-            a{
-              color: #fff;
-              margin: 0;
-              &:hover{text-decoration: none}
-            }
         }
     }
 
