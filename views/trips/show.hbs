@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/profile.css">
+<link rel="stylesheet" href="/stylesheets/froala/froala_style.min.css">
 
 <div class="container">
     <div class="userInfo">
@@ -8,10 +9,10 @@
         <p><b>Status:</b> {{trip.status}}</h3>
         <p><b>Start Date:</b> {{trip.startDate}}</h3>
         <p><b>End Date:</b> {{trip.endDate}}</h3>
-        <p><b>Creator:</b> {{trip.creator.username}}</p>
+        <p><b>Creator:</b> <a href="/profile/{{trip.creator.username}}">{{trip.creator.username}}</a></p>
 
         {{#if canRequest}}
-            <button><a href="/request/new/{{trip._id}}">Join travel</a></button>
+            <a href="/request/new/{{trip._id}}">Join travel</a>
         {{else}}
             <p><b>You have already joined!</b></p>
         {{/if}}

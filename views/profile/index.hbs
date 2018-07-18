@@ -8,9 +8,14 @@
         <p><b>Reputation:</b> {{user.rp.length}}</p>
         <p><b>Age:</b> {{user.age}}</p>
         <p><b>Sex:</b> {{user.sex}}</p>
-        <a href="/requests">See my Trip Requests</a>
-        <a href="/auth/edit-user">Edit your profile</a>
+        {{#if yourProfile}}
+        <a href="/requests">See my Trip Requests</a> <br>
+        <a href="/auth/edit-user">Edit your profile</a> <br>
         <a href="/auth/edit-password">Edit your password</a>
+        {{/if}}
+        {{#unless yourProfile}}
+        <a href="/profile/rp/{{user._id}}">Give him RP</a>
+        {{/unless}}
     </div>
     <div class="trips">
         <div class="title">
