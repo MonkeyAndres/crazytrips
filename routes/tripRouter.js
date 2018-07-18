@@ -28,7 +28,8 @@ router.get("/", (req, res, next) => {
 
 // Create trip form
 router.get("/create", (req, res, next) => {
-  res.render("trips/create", { operation: "Create" });
+  const countries = require('../config/countries');
+  res.render("trips/create", { operation: "Create", countries});
 });
 
 // Create trip
