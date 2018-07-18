@@ -1,0 +1,26 @@
+<h3>Country:{{country}}</h3>
+<h3>Capital:{{capital}}</h3>
+<h3>Region:{{region}}</h3>
+<h3>Population:{{population}}</h3>
+
+<h3>Currency</h3>
+<ul>
+{{#each currencies}}
+<li>{{name}} {{symbol}}</li>
+{{/each}}
+</ul>
+
+<h3>Language</h3>
+<ul>
+{{#each languages}}
+<li>{{this}}</li>
+{{/each}}
+</ul>
+
+<h3>Time-zone</h3>
+<ul>
+{{#each timezones}}
+<li>{{this}}</li>
+{{/each}}
+</ul>
+<img src="{{flag}}" alt="flag">

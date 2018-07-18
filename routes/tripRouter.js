@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const axios = require('axios');
 const { ifLogged } = require('../middleware/logged');
 
 const Trip = require("../models/Trip");
@@ -80,4 +81,41 @@ router.get('/:id',(req,res,next)=>{
   })
   .catch(error=>console.log(error))
 })
+
+  
+
+
+
+router.get('/info/:codeCountry',(req,res,next)=>{
+
+
+axios.get(`https://restcountries.eu/rest/v2/alpha/${req.params.codeCountry}`)
+  .then(response=>{
+
+
+    const languages=[],timezones=[],currencies=[];
+    const country=response.data.name;
+    const capital=response.data.capital;
+    const region=response.data.region;
+    const population=response.data.population;
+    const flag=response.data.flag;
+      
+    for (var i=0;i<response.data.languages.length;i++)
+      languages.push(response.data.languages[i].name)
+    
+    for (var i=0;i<response.data.timezones.length;i++)
+      timezones.push(response.data.timezones[i])
+    
+    for (var i=0;i<response.data.currencies.length;i++)
+      currencies.push({name:response.data.currencies[i].name, symbol:response.data.currencies[i].symbol})
+      
+      const information={country,capital,region,population,currencies,languages,timezones,flag} 
+      res.render('trips/info',information)
+     
+    })
+    .catch(err => next(err))
+
+  })
+
+
 module.exports = router;
