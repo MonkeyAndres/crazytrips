@@ -6,12 +6,12 @@
   .form-container h2 {
     font-weight: normal;
     font-size: 35px; }
-  .form-container input, .form-container textarea {
+  .form-container input, .form-container textarea, .form-container select {
     background-color: #eee;
     padding: 0.8em;
     border-radius: 3px;
     outline: none; }
-  .form-container input, .form-container textarea {
+  .form-container input, .form-container textarea, .form-container select {
     margin: 1em auto; }
   .form-container label {
     margin-right: 10px;

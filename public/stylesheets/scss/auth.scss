@@ -7,14 +7,14 @@
 
     h2{font-weight: normal; font-size: 35px}
 
-    input, textarea{
+    input, textarea, select{
         background-color: #eee;
         padding: 0.8em;
         border-radius: 3px;
         outline: none;
     }
 
-    input, textarea{margin: 1em auto}
+    input, textarea, select{margin: 1em auto}
     label{margin-right: 10px; font-size: 16px}
 
     a{
