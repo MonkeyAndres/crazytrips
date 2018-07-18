@@ -1,5 +1,3 @@
-require('dotenv').config({path: '.env.priv'})
-
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars');
 
