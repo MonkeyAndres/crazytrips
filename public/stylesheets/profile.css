@@ -16,27 +16,12 @@
     .container .userInfo p {
       margin: 10px 0; }
     .container .userInfo a {
-      display: block;
       color: #FFC107;
       text-decoration: none;
       font-weight: bold;
       margin: 10px 0; }
       .container .userInfo a:hover {
         text-decoration: underline; }
-    .container .userInfo button {
-      background-color: #FFC107;
-      color: #fff;
-      font-size: 14px;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 10px 15px;
-      border-radius: 3px; }
-      .container .userInfo button a {
-        color: #fff;
-        margin: 0; }
-        .container .userInfo button a:hover {
-          text-decoration: none; }
   .container .trips {
     width: 68%;
     padding: 1em; }
