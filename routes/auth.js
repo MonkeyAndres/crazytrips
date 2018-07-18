@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const { ifLogged } = require("../middleware/logged");
 const authRoutes = express.Router();
+const uploadCloud = require('../config/cloudinary.js');
 
 const User = require("../models/User");
 const Trip = require("../models/Trip");
@@ -9,6 +10,7 @@ const Request = require("../models/Request");
 
 const nodemailer = require("nodemailer");
 const sendMail = require("../mailing");
+
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -79,15 +81,17 @@ authRoutes.get('/confirm/:id', (req, res, next) => {
 
 
 // To Profile
-authRoutes.post('/edit-user', ifLogged, (req, res,next ) =>{  
+authRoutes.post('/edit-user', ifLogged,uploadCloud.single('photo'), (req, res,next ) =>{  
     const {name, surname, sex, age, telephone, bio} = req.body;
-    const update = {name, surname, sex, age, telephone, bio};
+    const profilePic = req.file.url;
+    const update = {name, surname, sex, age, telephone, bio,profilePic};
     if (name==="") delete update.name;
     if (surname==="") delete update.surname;
     if (sex==="") delete update.sex;
     if (age==="") delete update.age;
     if (telephone==="") delete update.telephone;
     if (bio==="") delete update.bio;
+    if (profilePic==="") delete update.profilePic;
 
     User.findByIdAndUpdate(req.user._id, update)
     .then(user => res.render("auth/edit-user", { message: "User edited" })) 

@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const profileRoutes = express.Router();
+const uploadCloud = require('../config/cloudinary.js');
 
 const { ifLogged } = require("../middleware/logged");
 profileRoutes.use(ifLogged);
