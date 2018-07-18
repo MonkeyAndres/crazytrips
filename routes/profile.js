@@ -38,10 +38,52 @@ profileRoutes.get('/rp/:id', ifLogged, (req, res, next) => {
     .catch(err => next(err));
 })
 
+profileRoutes.get('/edit-user', (req,res,next)=>{
+    res.render("profile/edit-user");
+})
+
+profileRoutes.post('/edit-user', uploadCloud.single('photo'), (req, res, next) =>{  
+    if(req.file) var profilePic = req.file.url;
+    const {name, surname, sex, age, telephone, bio} = req.body;
+
+    const update = {name, surname, sex, age, telephone, bio,profilePic};
+    if (name==="") delete update.name;
+    if (surname==="") delete update.surname;
+    if (!sex) delete update.sex;
+    if (age==="") delete update.age;
+    if (telephone==="") delete update.telephone;
+    if (bio==="") delete update.bio;
+    if (!profilePic) delete update.profilePic;
+
+    User.findByIdAndUpdate(req.user._id, update)
+    .then(user => res.redirect('/profile')) 
+    .catch(error => next(error));
+})
+
+profileRoutes.get('/edit-password', (req,res,next)=>{
+  res.render("profile/edit-password");
+})
+
+profileRoutes.post('/edit-password', (req,res,next)=>{  
+      if (bcrypt.compareSync(req.body.currentPassword,req.user.password)){
+        if (req.body.password!=req.body.passwordConfirm){
+           res.render("profile/edit-password", { message: "Password confirm is not equal" })
+        } else {
+        const salt = bcrypt.genSaltSync(bcryptSalt);
+        const hashPass = bcrypt.hashSync(req.body.password, salt);  
+        
+        User.findByIdAndUpdate(req.user._id, {password:hashPass})
+        .then(user => res.redirect('/profile'))
+        .catch(error => next(error));
+      }
+    }
+})
+
 profileRoutes.get('/:username', ifLogged, (req,res,next)=>{
     User.findOne({username: req.params.username})
     .then(user => {
         Trip.find({creator: user._id})
+        .sort({created_at: -1})
         .lean()
         .then(createdTrips => {
             for(trip of createdTrips){
@@ -55,7 +97,5 @@ profileRoutes.get('/:username', ifLogged, (req,res,next)=>{
     })
     .catch(err => next(err));
 })
-
-
 
 module.exports=profileRoutes;

@@ -4,7 +4,7 @@
     <h2>Edit User</h2>
     <p>Fill only the fields you want to change.</p>
 
-    <form action="/auth/edit-user" method="POST" id="form-container" enctype="multipart/form-data">
+    <form action="/profile/edit-user" method="POST" id="form-container" enctype="multipart/form-data">
         <label for="name">Name</label>
         <input id="name" type="text" name="name" placeholder="Name">
         <br>
@@ -23,13 +23,10 @@
         <br>
         <label for="biography">Biography</label>
         <br>
-        <textarea name="bio" rows="10" cols="70">Write your biography</textarea>
+        <textarea name="bio" rows="10" cols="70" placeholder="Write your biography"></textarea>
         <br>
-        <label for="photo">Upload your profile photo</label>
-        <input type="file" name="photo">
-
-
-
+        <label for="photo">Profile photo</label>
+        <input type="file" name="photo" style="background-color: transparent">
 
         {{#if message }}
         <br><div class="error-message">{{ message }}</div>

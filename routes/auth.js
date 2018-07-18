@@ -79,47 +79,4 @@ authRoutes.get('/confirm/:id', (req, res, next) => {
   .catch(err => next(err))
 })
 
-
-// To Profile
-authRoutes.post('/edit-user', ifLogged,uploadCloud.single('photo'), (req, res,next ) =>{  
-    const {name, surname, sex, age, telephone, bio} = req.body;
-    const profilePic = req.file.url;
-    const update = {name, surname, sex, age, telephone, bio,profilePic};
-    if (name==="") delete update.name;
-    if (surname==="") delete update.surname;
-    if (sex==="") delete update.sex;
-    if (age==="") delete update.age;
-    if (telephone==="") delete update.telephone;
-    if (bio==="") delete update.bio;
-    if (profilePic==="") delete update.profilePic;
-
-    User.findByIdAndUpdate(req.user._id, update)
-    .then(user => res.render("auth/edit-user", { message: "User edited" })) 
-    .catch(error=>console.log(error));
-})
-
-authRoutes.get('/edit-user', ifLogged, (req,res,next)=>{
-  res.render("auth/edit-user");
-})
-
-
-authRoutes.get('/edit-password', ifLogged, (req,res,next)=>{
-  res.render("auth/edit-password")
-})
-
-authRoutes.post('/edit-password', ifLogged, (req,res,next)=>{  
-      if (bcrypt.compareSync(req.body.currentPassword,req.user.password)){
-        if (req.body.password!=req.body.passwordConfirm){
-           res.render("auth/edit-password", { message: "Password confirm is not equal" })
-        } else {
-        const salt = bcrypt.genSaltSync(bcryptSalt);
-        const hashPass = bcrypt.hashSync(req.body.password, salt);  
-        
-        User.findByIdAndUpdate(req.user._id,{password:hashPass})
-        .then(user => res.redirect('/profile'))
-        .catch(error => console.log(error));
-      }
-    }
-})
-
 module.exports = authRoutes;
