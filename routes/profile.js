@@ -13,6 +13,7 @@ profileRoutes.get('/', ifLogged, (req,res,next)=>{
     const resquestedTrips = [];
 
     Trip.find({creator: req.user._id}).lean()
+    .sort({created_at: -1})
     .then(createdTrips => {
         for(trip of createdTrips){
             trip.startDate = trip.startDate.toDateString();

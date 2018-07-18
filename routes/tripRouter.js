@@ -8,9 +8,9 @@ const FroalaEditor = require("../node_modules/wysiwyg-editor-node-sdk/lib/froala
 const ObjectId = require('mongoose').Types.ObjectId; 
 router.use(ifLogged);
 
+// List of all trips (except the ones created by user)
 router.get("/", (req, res, next) => {
-  Trip.find()
-    .populate("creator")
+  Trip.find({creator: {$ne: req.user._id}})
     .sort({created_at: -1})
     .lean()
     .then(trips => {
@@ -19,14 +19,17 @@ router.get("/", (req, res, next) => {
         trip.endDate = trip.endDate.toDateString();
       }
       res.render("trips/index", { trips });
-    });
+    })
+    .catch(error => next(error))
 });
 
+// Create trip form
 router.get("/create", (req, res, next) => {
-  res.render("trips/create");
+  res.render("trips/create", {operation: "Create"});
 });
 
-router.post("/create", (req, res, next) => {
+// Create trip
+router.post("/Create", (req, res, next) => {
     const {title, destination, price, description, maxTravelers, startDate, endDate} = req.body;
 
     const newTrip = new Trip({
@@ -45,6 +48,7 @@ router.post("/create", (req, res, next) => {
     .catch(err => next(err))
 });
 
+// Upload images froala
 router.post("/upload_image", (req, res, next) => {
   FroalaEditor.Image.upload(req, "../public/uploads/", (err, data) => {
     // Return data.
@@ -57,27 +61,61 @@ router.post("/upload_image", (req, res, next) => {
   });
 });
 
-
+// Show specific trip
 router.get('/:id',(req,res,next)=>{
-
   Trip.findById(req.params.id)
   .populate('creator')
   .lean()
   .then(trip=>{
+    let canRequest = true;
     trip.startDate = trip.startDate.toDateString();
     trip.endDate = trip.endDate.toDateString();
 
+    if(trip.creator._id.toString() == req.user._id) canRequest = false
+
     Request.find({trip: req.params.id})
     .then(request => {
-      let canRequest = true;
       for(r of request){
-        if(r.user.toString() == req.user._id){
-          canRequest = false;
-        }
+        if(r.user.toString() == req.user._id) canRequest = false;
       }
       res.render('trips/show',{trip, canRequest})
     })
   })
-  .catch(error=>console.log(error))
+  .catch(error => next(error))
 })
+
+// Remove Trip
+router.get('/delete/:id', (req, res, next) => {
+  Trip.findById(req.params.id)
+  .then(trip => {
+    if(trip.creator.toString() == req.user._id) return trip.remove()
+  })
+  .then(trip => res.redirect('/profile'))
+  .catch(error => next(error))
+})
+
+// Edit Trip Form
+router.get('/edit/:id', (req, res, next) => {
+  Trip.findById(req.params.id)
+  .lean()
+  .then(trip => {
+    trip.startDate = trip.startDate.toLocaleDateString('es-ES', {year: 'numeric', month: "2-digit", day: "2-digit"});
+    trip.endDate = trip.endDate.toLocaleDateString('es-ES', {year: 'numeric', month: "2-digit", day: "2-digit"});
+
+    res.render("trips/create", {trip, operation: "Edit"});
+  })
+  .catch(error => next(error))
+})
+
+// Edit Trip
+router.post('/Edit/:id', (req, res, next) => {
+  const {title, price, description, maxTravelers, startDate, endDate} = req.body;
+  
+  Trip.findByIdAndUpdate(req.params.id, {title, price, description, maxTravelers, startDate, endDate})
+  .then(trip => {
+    res.redirect('/profile');
+  })
+  .catch(error => next(error))
+})
+
 module.exports = router;

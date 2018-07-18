@@ -8,43 +8,38 @@
         <p><b>Reputation:</b> {{user.rp.length}}</p>
         <p><b>Age:</b> {{user.age}}</p>
         <p><b>Sex:</b> {{user.sex}}</p>
-        
         {{#if yourProfile}}
         <a href="/requests">See my Trip Requests</a> <br>
         <a href="/auth/edit-user">Edit your profile</a> <br>
         <a href="/auth/edit-password">Edit your password</a>
         {{/if}}
-
         {{#unless yourProfile}}
         <a href="/profile/rp/{{user._id}}">Give him RP</a>
         {{/unless}}
     </div>
     <div class="trips">
         <div class="title">
-            <h2>Viajes Creados</h2>
+            <h2>Requested Trips</h2>
             {{#if yourProfile}}
             <a href="/trips/create">Create Trip</a>
             {{/if}}
         </div>
 
         <div class="tripContainer">
-            {{#each createdTrips}} 
-                <article>
-                    <h3><a href="/trips/{{_id}}">{{title}}</a></h3>
-                    <p><i>Destination:</i> {{destination}}</p>
-                    <p><i>Price:</i> {{price}}€</p>
-                    <p><i>Dates:</i> {{startDate}} - {{endDate}}</p>
-                    {{#if status}} 
-                        <p class="red">Status: Unavalible</p>
-                    {{else}}
-                        <p class="green">Status: Avalible</p>
-                    {{/if}}
-
-                    {{#if ../yourProfile}}
-                    <p style="text-align: right"><a href="/trips/delete/{{_id}}">Remove Trip</a><a href="#"> - </a><a href="/trips/edit/{{_id}}">Edit Trip</a></p>
-                    <p style="text-align: right"><a href="/requests/eval/{{_id}}">Evalue Requests</a></p>
-                    {{/if}}
-                </article>
+            {{#each arrayRequest}}
+            <article>
+                {{#if ../acceptedRequests}}
+                    <h3><a href="/profile/{{user.username}}">{{user.username}}</a></h3>
+                    <p>
+                        <a href="/requests/accept/{{user._id}}/{{trip._id}}" class="green">Accept</a>
+                        -
+                        <a href="/requests/decline/{{user._id}}/{{trip._id}}" class="red">Decline</a>
+                    </p>
+                {{else}}
+                    <h3><a href="/trips/{{trip._id}}">{{trip.title}}</a></h3> 
+                    <p class="green">Status: {{status}}</p>
+                {{/if}}
+            </article>
             {{/each}}
         </div>
     </div>

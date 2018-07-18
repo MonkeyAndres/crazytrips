@@ -4,7 +4,7 @@
 <div class="container">
     <div class="userInfo">
         <h2>{{trip.title}}</h2>
-        <p><b>Destination:</b> {{trip.destination}}</h3>
+        <p><b>Destination:</b> <a href="/trips/info/{{trip.destination}}">See Destination Info</a></h3>
         <p><b>Price:</b> {{trip.price}}</h3>
         <p><b>Status:</b> {{trip.status}}</h3>
         <p><b>Start Date:</b> {{trip.startDate}}</h3>
@@ -12,7 +12,7 @@
         <p><b>Creator:</b> <a href="/profile/{{trip.creator.username}}">{{trip.creator.username}}</a></p>
 
         {{#if canRequest}}
-            <a href="/request/new/{{trip._id}}">Join travel</a>
+            <a href="/requests/new/{{trip._id}}">Join travel</a>
         {{else}}
             <p><b>You have already joined!</b></p>
         {{/if}}

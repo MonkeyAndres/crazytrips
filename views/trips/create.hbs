@@ -10,12 +10,13 @@
 <link rel="stylesheet" href="/stylesheets/auth.css">
 
 <div class="form-container">
-    <h2>Create trip</h2>
-    <form action="/trips/create" method="POST">
+    <h2>{{operation}} trip</h2>
+    <form action="/trips/{{operation}}/{{trip._id}}" method="POST">
         <label for="title">Titulo: </label>
-        <input type="text" name="title">
+        <input type="text" name="title" value="{{trip.title}}">
         <br>
 
+        {{#unless trip._id}}
         <label for="destination">Destino: </label>
         <select name="destination">
             <option value="AFG">Afghanistan</option>
@@ -269,27 +270,28 @@
             <option value="ZWE">Zimbabwe</option>
         </select>
         <br>
+        {{/unless}}
 
         <label for="price">Precio: </label>
-        <input type="text" name="price">
+        <input type="text" name="price" value="{{trip.price}}">
         <br>
 
-        <textarea name="description" id="editor"></textarea>
+        <textarea name="description" id="editor">{{trip.description}}</textarea>
         <br>
 
         <label for="maxTravelers">Maximo viajeros: </label>
-        <input type="number" name="maxTravelers">
+        <input type="number" name="maxTravelers" value="{{trip.maxTravelers}}">
         <br>
 
         <label for="startDate">Fecha Inicio: </label>
-        <input type="date" name="startDate">
+        <input type="date" name="startDate" value="{{trip.startDate}}">
         <br>
 
         <label for="endDate">Fecha Fin: </label>
-        <input type="date" name="endDate">
+        <input type="date" name="endDate" value="{{trip.endDate}}">
         <br>
 
-        <button>Create</button>
+        <button>{{operation}}</button>
     </form>
 </div>
 
