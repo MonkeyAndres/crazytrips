@@ -137,7 +137,13 @@ router.post("/Edit/:id", (req, res, next) => {
 // Travel companions
 router.get('/travelers/:id', (req, res, next) => {
   Request.find({status: "Accepted", trip: req.params.id})
-  .populate('trip user')
+  .populate('user')
+  .populate({
+    path:'trip',
+    populate:{
+      path:"creator"
+    }
+  })
   .lean()
   .then(requests => {
     if(requests.length == 0) return Trip.findById(req.params.id).lean()
