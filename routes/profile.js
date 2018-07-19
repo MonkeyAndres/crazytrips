@@ -23,6 +23,7 @@ profileRoutes.get('/', (req, res, next) => {
         if(!user.bio) completeTasks.push("Add a biography");
         if(!user.profilePic) completeTasks.push("Add a profile photo");
         if(!user.telephone) completeTasks.push("Add your telephone");
+        if(!user.socialLinks.facebook && !user.socialLinks.twitter && !user.socialLinks.instagram) completeTasks.push("Add a social link");
 
         sectionTitle = completeTasks.length > 0 ? "Complete your profile" : "Menu";
 
