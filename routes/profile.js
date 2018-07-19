@@ -49,15 +49,14 @@ profileRoutes.get('/', (req, res, next) => {
 
 profileRoutes.get('/createdTrips', (req,res,next)=>{
     const resquestedTrips = [];
-
     Trip.find({creator: req.user._id}).lean()
     .sort({created_at: -1})
     .then(createdTrips => {
+        console.log(createdTrips)
         for(trip of createdTrips){
             trip.startDate = trip.startDate.toDateString();
             trip.endDate = trip.endDate.toDateString();
         }
-
         if(createdTrips.length == 0) var createdTrips = "No trips"
 
         res.render('profile/index', {createdTrips, yourProfile: true})
