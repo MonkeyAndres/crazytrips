@@ -61,7 +61,7 @@ router.get('/decline/:userID/:tripID', (req, res, next) => {
 	.populate('trip')
 	.then(request => {
 	  if(request.trip.creator.toString() == req.user._id){
-		  request.status = "Decline";
+		  request.status = "Declined";
 	  }
 	  return request.save()
 	})
