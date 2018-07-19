@@ -15,7 +15,6 @@
         <label for="title">Titulo: </label>
         <input type="text" name="title" value="{{trip.title}}">
         <br>
-
         {{#unless trip._id}}
         <label for="destination">Destino: </label>
         <select name="destination">
@@ -25,6 +24,7 @@
         </select>
         <br>
         {{/unless}}
+     <div class="error-message">{{ message }}</div>
 
         <label for="price">Precio: </label>
         <input type="text" name="price" value="{{trip.price}}">
