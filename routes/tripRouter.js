@@ -131,6 +131,20 @@ router.post("/Edit/:id", (req, res, next) => {
     .catch(error => next(error));
 });
 
+// Travel companions
+router.get('/travelers/:id', (req, res, next) => {
+  Request.find({status: "Accepted", trip: req.params.id})
+  .populate('trip user')
+  .lean()
+  .then(requests => {
+    let trip = requests[0].trip;
+    trip.startDate = trip.startDate.toDateString();
+    trip.endDate = trip.endDate.toDateString();
+    res.render('trips/show', {requests, trip})
+  })
+});
+
+// Info Country
 router.get("/info/:codeCountry", (req, res, next) => {
   axios.get(`https://restcountries.eu/rest/v2/alpha/${req.params.codeCountry}`)
     .then(response => {
