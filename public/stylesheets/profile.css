@@ -12,7 +12,7 @@
     padding: 1em; }
     .container .userInfo h2 {
       font-weight: 300;
-      font-size: 28px; }
+      font-size: 24px; }
     .container .userInfo p {
       margin: 10px 0; }
     .container .userInfo a {
@@ -61,3 +61,18 @@
         color: red; }
       .container .trips .tripContainer > article .green {
         color: forestgreen; }
+
+@media screen and (max-width: 730px) {
+  .userInfo {
+    position: absolute;
+    top: 0;
+    left: -300px;
+    z-index: 300;
+    width: 300px !important;
+    height: 100%;
+    overflow: auto;
+    transition: left 300ms ease-in-out; }
+  #menu {
+    display: inline-block !important; }
+  .trips {
+    width: 100% !important; } }

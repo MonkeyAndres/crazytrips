@@ -76,6 +76,7 @@ img{width: 100%}
         display: flex;
         align-items: center;
         justify-content: space-between;
+        flex-wrap: wrap;
 
         &>.img-container{
             width: 40%;
@@ -90,4 +91,19 @@ img{width: 100%}
 footer{
     background-color: #333;
     color: #fff;
+}
+
+@media screen and (max-width: 920px) {
+    .box{width: 100% !important}
+}
+
+@media screen and (max-width: 700px){
+    #section3 .container {
+        .img-container{
+            width: 100%
+        }
+        .history{
+            width: 100%;
+        }
+    }
 }
