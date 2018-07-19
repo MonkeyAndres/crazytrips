@@ -39,9 +39,17 @@
 <body>
     <div class="container">
         <h1>CrazyTrips</h1>
+
+        {{#unless tripID}}
         <h2>Hello {{user.username}}, thanks for Register!</h2>
         <p>Please click the following link for confirm your account.</p>
         <a href="https://crazytrips.herokuapp.com/auth/confirm/{{user._id}}" style="color: white">Confirm Account</a>
+        {{else}}
+        <h2>Hello {{user.username}},</h2>
+        <p>Someone has joined your trip.</p>
+        <p>Please click the following link for evaluete the request.</p>
+        <a href="https://crazytrips.herokuapp.com/requests/eval/{{tripID}}" style="color: white">Evaluate Request</a>
+        {{/unless}}
     </div>
 </body>
 </html>
