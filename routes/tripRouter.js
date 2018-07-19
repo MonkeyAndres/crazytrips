@@ -95,6 +95,8 @@ router.get("/edit/:id", (req, res, next) => {
   Trip.findById(req.params.id)
     .lean()
     .then(trip => {
+      if(trip.creator != req.user._id) throw new Error("You Aren't the creator");
+
       trip.startDate = trip.startDate.toLocaleDateString("es-ES", {
         year: "numeric",
         month: "2-digit",
