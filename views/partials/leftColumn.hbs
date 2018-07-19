@@ -4,6 +4,20 @@
 <p><b>Reputation:</b> {{user.rp.length}}</p>
 <p><b>Age:</b> {{user.age}}</p>
 <p><b>Sex:</b> {{user.sex}}</p>
+<p><b>Social Links</b></p>
+
+{{#if user.socialLinks.facebook}}
+<a href="{{user.socialLinks.facebook}}">Facebook</a><br>
+{{/if}}
+
+{{#if user.socialLinks.instagram}}
+<a href="{{user.socialLinks.instagram}}">Instagram</a><br>
+{{/if}}
+
+{{#if user.socialLinks.twitter}}
+<a href="{{user.socialLinks.twitter}}">Twitter</a><br><br>
+{{/if}}
+
 {{#if yourProfile}}
 <a href="/profile/edit-user">Edit your profile</a> <br>
 <a href="/profile/edit-password">Edit your password</a>

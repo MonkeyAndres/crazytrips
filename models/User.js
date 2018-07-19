@@ -13,15 +13,16 @@ const userSchema = new Schema({
   telephone:Number,
   profilePic: String,
   bio: String,
-  rp: [{type: Schema.Types.ObjectId, ref: 'User'}],
-
-  status: Boolean,
-
   socialLinks: {
     facebook: String,
     instagram: String,
     twitter: String
   },
+  rp: [{type: Schema.Types.ObjectId, ref: 'User'}],
+
+  status: Boolean,
+
+  
 
 
 }, {
