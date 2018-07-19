@@ -4,7 +4,7 @@ const axios = require("axios");
 const { ifLogged } = require("../middleware/logged");
 
 const uploadCloud = require('../config/cloudinary');
-
+const flash = require("connect-flash")
 const Trip = require("../models/Trip");
 const Request = require("../models/Request");
 const FroalaEditor = require("../node_modules/wysiwyg-editor-node-sdk/lib/froalaEditor.js");
@@ -38,9 +38,12 @@ router.post("/Create", (req, res, next) => {
 
   
 
-  
-  if(price.match(/[^0-9]/g)!=null)
-    res.render("auth/signup", { message: "Price must be a valid number!" });
+  const countries = require('../config/countries');
+
+  if(price.match(/[^0-9]/g)!=null){
+    res.render("trips/create", { message:"Price must be a valid number!", operation: "Create",countries });
+    return;
+  }
 
 
   const newTrip = new Trip({
