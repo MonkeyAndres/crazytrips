@@ -31,4 +31,14 @@ const sendMail = (user) => {
     return transporter.sendMail(mail)
 }
 
-module.exports = sendMail;
+const sendMailRequest = (user,trip) => {
+    let mail = {
+        to: user.email,
+        subject: 'Someone has joined your trip!',
+        template: 'index',
+        context: {user,tripID:trip._id }
+    };
+    return transporter.sendMail(mail)
+}
+
+module.exports = {sendMail, sendMailRequest};

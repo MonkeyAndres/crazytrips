@@ -3,19 +3,33 @@ const router = express.Router();
 
 const Request = require("../models/Request");
 const Trip = require("../models/Trip");
-
+const nodemailer = require("nodemailer");
+const {sendMail, sendMailRequest} = require("../mailing");
 const { ifLogged } = require("../middleware/logged");
 router.use(ifLogged);
 
 // New request
 router.get("/new/:id", (req, res, next) => {
   const newReq = new Request({
-	trip: req.params.id,
-	user: req.user._id,
-  });
-  newReq.save()
-	.then(data => res.redirect("/trips"))
-	.catch(err => next(err));
+		trip: req.params.id,
+    user: req.user._id,
+	});
+
+	Trip.findById(req.params.id)
+	.populate("creator")
+	.then(trip=>{
+	
+		newReq.save()
+    .then(data =>{ 
+			sendMailRequest(trip.creator,trip)
+      res.redirect("/trips")
+    })
+	.catch(err => next(err));	
+
+
+
+	})
+  
 });
 
 // List request that a user made

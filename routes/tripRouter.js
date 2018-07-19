@@ -36,6 +36,12 @@ router.get("/create", (req, res, next) => {
 router.post("/Create", (req, res, next) => {
   const {title,destination,price,description,maxTravelers,startDate,endDate} = req.body;
 
+  
+
+  
+//if (price.match(/^([0-9])/))
+
+
   const newTrip = new Trip({
     creator: req.user._id,
     title,
