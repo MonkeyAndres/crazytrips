@@ -108,15 +108,18 @@ profileRoutes.get('/edit-user', (req,res,next)=>{
 
 profileRoutes.post('/edit-user', uploadCloud.single('photo'), (req, res, next) =>{  
     if(req.file) var profilePic = req.file.url;
-    const {name, surname, sex, age, telephone, bio} = req.body;
-
-    const update = {name, surname, sex, age, telephone, bio,profilePic};
+    const {name, surname, sex, age, telephone, bio,facebook,twitter,instagram} = req.body;
+    const socialLinks={facebook,instagram,twitter}
+    const update = {name, surname, sex, age, telephone, bio,profilePic,socialLinks};
     if (name==="") delete update.name;
     if (surname==="") delete update.surname;
     if (!sex) delete update.sex;
     if (age==="") delete update.age;
     if (telephone==="") delete update.telephone;
     if (bio==="") delete update.bio;
+    if (facebook==="") delete update.socialLinks.facebook;
+    if (instagram==="") delete update.socialLinks.instagram;
+    if (twitter==="") delete update.socialLinks.twitter;
     if (!profilePic) delete update.profilePic;
 
     User.findByIdAndUpdate(req.user._id, update)
