@@ -1,26 +1,47 @@
-<h3>Country:{{country}}</h3>
-<h3>Capital:{{capital}}</h3>
-<h3>Region:{{region}}</h3>
-<h3>Population:{{population}}</h3>
+<link rel="stylesheet" href="/stylesheets/index.css">
 
-<h3>Currency</h3>
-<ul>
-{{#each currencies}}
-<li>{{name}} {{symbol}}</li>
-{{/each}}
-</ul>
+<style>
+    html{
+        background-color: #eee;
+    }
 
-<h3>Language</h3>
-<ul>
-{{#each languages}}
-<li>{{this}}</li>
-{{/each}}
-</ul>
+    .info{
+        margin: 1em auto;
+        padding-left: 2em;
+        padding-right: 2em;
+        background-color: #fff;
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+    }
 
-<h3>Time-zone</h3>
-<ul>
-{{#each timezones}}
-<li>{{this}}</li>
-{{/each}}
-</ul>
-<img src="{{flag}}" alt="flag">
+    li{margin-left: 2em;}
+</style>
+
+<div class="container info">
+    <div style="max-width: 300px; margin: 1em auto"><img src="{{flag}}" alt="flag"></div>
+    <p><b>Country:</b>{{country}}</p>
+    <p><b>Capital:</b> {{capital}}</p>
+    <p><b>Region:</b> {{region}}</p>
+    <p><b>Population:</b> {{population}}</p>
+
+    <p><b>Currency</b></p>
+    <ul>
+    {{#each currencies}}
+    <li>{{name}} {{symbol}}</li>
+    {{/each}}
+    </ul>
+
+    <p><b>Language</b></p>
+    <ul>
+    {{#each languages}}
+    <li>{{this}}</li>
+    {{/each}}
+    </ul>
+
+    <p><b>Time-zone</b></p>
+    <ul>
+    {{#each timezones}}
+    <li>{{this}}</li>
+    {{/each}}
+    </ul>
+</div>

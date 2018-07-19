@@ -2,29 +2,53 @@
 <html>
   <head>
     <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">    
     <link rel='stylesheet' href='/stylesheets/main.css' />
   </head>
   <body>
     <header>
       <div>
-        <a href="/"><h1>{{title}}</h1></a>
+        <main>
+          <a href="#" id="menu"><i class="mdi mdi-menu"></i></a>
+          <a href="/"><h1>{{title}}</h1></a>
+        </main>
         <ul>
           {{#if user}}
-          <li><a href="/trips">All Trips</a></li>
-          <li><a href="/profile">My Profile</a></li>
-          <li><a href="/auth/logout">Log Out</a></li>
+          <li><a href="/trips">
+            <i class="mdi mdi-wallet-travel"></i>
+            <span>All Trips</span>
+          </a></li>
+
+          <li><a href="/profile">
+            <i class="mdi mdi-account"></i>
+            <span>My Profile</span>
+          </a></li>
+
+          <li><a href="/auth/logout">
+            <i class="mdi mdi-logout"></i>
+            <span>Log Out</span>
+          </a></li>
           {{/if}}
 
           {{#unless user}}
-          <li><a href="/auth/login">Log In</a></li>
-          <li><a href="/auth/signup">Sign Up</a></li>
+          <li><a href="/auth/login">
+            <i class="mdi mdi-login"></i>
+            <span>Log In</span>
+          </a></li>
+          <li><a href="/auth/signup">
+            <i class="mdi mdi-account-plus-outline"></i>
+            <span>Sign Up</span>
+          </a></li>
           {{/unless}}
         </ul>
       </div>
     </header>
 
     {{{body}}}
+
+    <div id="shadow"></div>
 
     <script src='/javascripts/script.js'></script>
   </body>
