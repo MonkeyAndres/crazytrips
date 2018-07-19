@@ -58,7 +58,7 @@ authRoutes.post("/signup", (req, res, next) => {
       return sendMail(newUser)
     })
     .then(() => {
-      res.redirect("/")
+      res.render("auth/signup", { message: "Check your email and confirm your account!" })
     })
     .catch(err => {
       console.log(err);
