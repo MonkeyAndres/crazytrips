@@ -1,3 +1,7 @@
+@import 'palette';
+
+img{width: 100%}
+
 #section1{
     height: calc(100vh - 78px);
     background-image: url('../images/section1BG.jpg');
@@ -34,14 +38,56 @@
             p{
                 font-size: 18px;
                 color: #333;
+                text-align: left;
+            }
+            a{
+                color: $primary-color-dark;
+                font-weight: bold;
+                text-decoration: none;
+                &:hover{text-decoration: underline}
             }
         }
     }
 }
 
-#section2{
+#section2, .container{
     width: 90%;
     max-width: 1000px;
     margin: 0 auto;
     padding: 2em 0;
+}
+
+#section2 {
+    .img-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div{width: 48%}
+    }
+}
+
+#section3{
+    background-color: $accent-color;
+    padding: 3em 0;
+    color: #fff;
+    
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &>.img-container{
+            width: 40%;
+        }
+
+        &>.history{
+            width: 56%;
+        }
+    }
+}
+
+footer{
+    background-color: #333;
+    color: #fff;
 }
