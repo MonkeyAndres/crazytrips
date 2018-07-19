@@ -39,7 +39,8 @@ router.post("/Create", (req, res, next) => {
   
 
   
-//if (price.match(/^([0-9])/))
+  if(price.match(/[^0-9]/g)!=null)
+    res.render("auth/signup", { message: "Price must be a valid number!" });
 
 
   const newTrip = new Trip({
