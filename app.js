@@ -14,8 +14,6 @@ const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
 
-console.log(process.env.DBURL);
-
 mongoose.Promise = Promise;
 mongoose
   .connect(process.env.DBURL, {useNewUrlParser: true })
