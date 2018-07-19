@@ -140,9 +140,19 @@ router.get('/travelers/:id', (req, res, next) => {
   .populate('trip user')
   .lean()
   .then(requests => {
+    if(requests.length == 0) return Trip.findById(req.params.id).lean()
+
     let trip = requests[0].trip;
     trip.startDate = trip.startDate.toDateString();
     trip.endDate = trip.endDate.toDateString();
+    res.render('trips/show', {requests, trip})
+  })
+  .then(trip => {
+    var requests = "No Travelers";
+
+    trip.startDate = trip.startDate.toDateString();
+    trip.endDate = trip.endDate.toDateString();
+
     res.render('trips/show', {requests, trip})
   })
 });
