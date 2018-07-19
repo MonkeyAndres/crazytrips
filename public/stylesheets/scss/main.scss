@@ -14,6 +14,7 @@ header {
     
     position: sticky;
     top: 0;
+    z-index: 999;
     background-color: $primary-color-dark;
 
     a{color: $primary-color-text}
