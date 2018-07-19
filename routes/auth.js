@@ -33,13 +33,18 @@ authRoutes.get("/signup", (req, res, next) => {
 });
 
 authRoutes.post("/signup", (req, res, next) => {
-  const {username,password,email,name,surname,sex,age} = req.body;
+  const {username,password,passwordConfirm,email,name,surname,sex,age} = req.body;
 
-  if (username === "" || password === "" || email === "" || name === "" || surname === "" || age === "") {
+  if (username === "" || password === "" || email === "" || name === "" || surname === "" || age === "" || passwordConfirm ==="") {
     res.render("auth/signup", { message: "Fill all the information!!" });
     return;
   }
 
+  if (password!=passwordConfirm){
+    res.render("auth/signup", { message: "Password confirm must be the same!" });
+    return;
+
+  }
   const salt = bcrypt.genSaltSync(bcryptSalt);
   const hashPass = bcrypt.hashSync(password, salt);
 
