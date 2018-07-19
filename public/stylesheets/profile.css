@@ -33,7 +33,7 @@
       .container .trips .title h2 {
         font-weight: normal;
         font-size: 28px; }
-      .container .trips .title a {
+      .container .trips .title > a {
         background-color: #FFC107;
         color: #fff;
         font-size: 14px;

@@ -1,0 +1,30 @@
+<div class="title">
+    <ul>
+        <h2>{{sectionTitle}}</h2>
+        {{#if yourProfile}} {{#each completeTasks}}
+        <li style="margin-left: 2em"><a href="/profile/edit-user">{{this}}</a></li>
+        {{/each}} {{/if}}
+    </ul>
+</div>
+
+<div class="tripContainer">
+    <article>
+        <h3>
+            <a href="/profile/createdTrips">Created trips</a>
+        </h3>
+        <p>See all the trips created by the user.</p>
+        <p></p>
+    </article>
+
+    {{#if yourProfile}}
+    <article>
+        <h3>
+            <a href="/requests">See my Trip Requests</a>
+        </h3>
+        <p>See all the trips you request to go.</p>
+        <p>Accepted: {{acceptedRequests}}</p>
+        <p>Declined: {{declinedRequests}}</p>
+        <p>Pending: {{pendingRequests}}</p>
+    </article>
+    {{/if}}
+</div>

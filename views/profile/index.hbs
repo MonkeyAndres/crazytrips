@@ -2,50 +2,13 @@
 
 <div class="container">
     <div class="userInfo">
-        <div><img src="{{user.profilePic}}" style="width: 100%"></div> 
-        <h2>{{user.username}}</h2>
-        <p>{{user.bio}}</p>
-        <p><b>Reputation:</b> {{user.rp.length}}</p>
-        <p><b>Age:</b> {{user.age}}</p>
-        <p><b>Sex:</b> {{user.sex}}</p>
-        
-        {{#if yourProfile}}
-        <a href="/requests">See my Trip Requests</a> <br>
-        <a href="/profile/edit-user">Edit your profile</a> <br>
-        <a href="/profile/edit-password">Edit your password</a>
-        {{/if}}
-
-        {{#unless yourProfile}}
-        <a href="/profile/rp/{{user._id}}">Give him RP</a>
-        {{/unless}}
+        {{> leftColumn this }}
     </div>
     <div class="trips">
-        <div class="title">
-            <h2>Viajes Creados</h2>
-            {{#if yourProfile}}
-            <a href="/trips/create">Create Trip</a>
-            {{/if}}
-        </div>
-
-        <div class="tripContainer">
-            {{#each createdTrips}} 
-                <article>
-                    <h3><a href="/trips/{{_id}}">{{title}}</a></h3>
-                    <p><i>Destination:</i> {{destination}}</p>
-                    <p><i>Price:</i> {{price}}€</p>
-                    <p><i>Dates:</i> {{startDate}} - {{endDate}}</p>
-                    {{#if status}} 
-                        <p class="red">Status: Unavalible</p>
-                    {{else}}
-                        <p class="green">Status: Avalible</p>
-                    {{/if}}
-
-                    {{#if ../yourProfile}}
-                    <p style="text-align: right"><a href="/trips/delete/{{_id}}">Remove Trip</a><a href="#"> - </a><a href="/trips/edit/{{_id}}">Edit Trip</a></p>
-                    <p style="text-align: right"><a href="/requests/eval/{{_id}}">Evalue Requests</a></p>
-                    {{/if}}
-                </article>
-            {{/each}}
-        </div>
+        {{#if createdTrips}}
+            {{> createdTrips this}}
+        {{else}}
+            {{> tripsMain this}}
+        {{/if}}
     </div>
 </div>

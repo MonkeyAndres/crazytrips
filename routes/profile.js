@@ -3,14 +3,50 @@ const passport = require("passport");
 const profileRoutes = express.Router();
 const uploadCloud = require('../config/cloudinary.js');
 
-const { ifLogged } = require("../middleware/logged");
+const  { ifLogged } = require("../middleware/logged");
 profileRoutes.use(ifLogged);
 
 const User = require("../models/User");
 const Request = require("../models/Request");
 const Trip = require('../models/Trip');
 
-profileRoutes.get('/', ifLogged, (req,res,next)=>{
+profileRoutes.get('/', (req, res, next) => {
+    // Profile Status, pending requests, tasks
+    let completeTasks = [];
+    let acceptedRequests = 0;
+    let declinedRequests = 0;
+    let pendingRequests = 0;
+    let profileStatus = "Menu";
+
+    User.findById(req.user._id)
+    .then(user => {
+        if(!user.bio) completeTasks.push("Add a biography");
+        if(!user.profilePic) completeTasks.push("Add a profile photo");
+        if(!user.telephone) completeTasks.push("Add your telephone");
+
+        sectionTitle = completeTasks.length > 0 ? "Complete your profile" : "Menu";
+
+        return Request.find({user: req.user._id})
+    })
+    .then(requests => {
+        for(r of requests){
+            if(r.status == "Accepted") {acceptedRequests++}
+            if(r.status == "Declined") {declinedRequests++}
+            if(r.status == "Pending") {pendingRequests++}
+        }
+
+        res.render('profile/index', {
+            completeTasks,
+            yourProfile: true,
+            sectionTitle,
+            acceptedRequests,
+            declinedRequests,
+            pendingRequests
+        })
+    })
+})
+
+profileRoutes.get('/createdTrips', (req,res,next)=>{
     const resquestedTrips = [];
 
     Trip.find({creator: req.user._id}).lean()
@@ -20,14 +56,42 @@ profileRoutes.get('/', ifLogged, (req,res,next)=>{
             trip.startDate = trip.startDate.toDateString();
             trip.endDate = trip.endDate.toDateString();
         }
+
+        if(createdTrips.length == 0) var createdTrips = "No trips"
+
         res.render('profile/index', {createdTrips, yourProfile: true})
     })
     .catch(err => next(err))
 })
 
-profileRoutes.get('/rp/:id', ifLogged, (req, res, next) => {
+profileRoutes.get('/createdTrips/:id', (req,res,next)=>{
+    const resquestedTrips = [];
+
+    Trip.find({creator: req.params.id})
+    .lean()
+    .sort({created_at: -1})
+    .then(createdTrips => {
+        for(trip of createdTrips){
+            trip.startDate = trip.startDate.toDateString();
+            trip.endDate = trip.endDate.toDateString();
+        }
+
+        if(createdTrips.length == 0) var createdTrips = "No trips"
+
+        User.findById(req.params.id)
+        .then(user => {
+            if(!user) throw new Error('No user')
+            res.render('profile/index', {user, createdTrips, yourProfile: false})
+        })
+    })
+    .catch(err => next(err))
+})
+
+profileRoutes.get('/rp/:id', (req, res, next) => {
     User.findById(req.params.id)
     .then(user => {
+        if(!user) throw new Error('No user')
+
         if (user.rp.indexOf(req.user._id) < 0 && req.user._id != user._id.toString()) {
             user.rp.push(req.user._id);
         }
@@ -79,9 +143,11 @@ profileRoutes.post('/edit-password', (req,res,next)=>{
     }
 })
 
-profileRoutes.get('/:username', ifLogged, (req,res,next)=>{
+profileRoutes.get('/:username', (req,res,next)=>{
     User.findOne({username: req.params.username})
     .then(user => {
+        if(!user) throw new Error('No user');
+
         Trip.find({creator: user._id})
         .sort({created_at: -1})
         .lean()

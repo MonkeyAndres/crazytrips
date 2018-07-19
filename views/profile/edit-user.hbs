@@ -6,24 +6,20 @@
 
     <form action="/profile/edit-user" method="POST" id="form-container" enctype="multipart/form-data">
         <label for="name">Name</label>
-        <input id="name" type="text" name="name" placeholder="Name">
+        <input id="name" type="text" name="name" value="{{user.name}}">
         <br>
         <label for="surname">Surname</label>
-        <input id="surname" type="text" name="surname" placeholder="Surname">
-        <br>
-        <input type="radio" name="sex" value="male"> Male
-        <br>
-        <input type="radio" name="sex" value="female"> Female
+        <input id="surname" type="text" name="surname" value="{{user.surname}}">
         <br>
         <label for="age">Age (min 18yo)</label>
-        <input type="number" name="age" min="18">
+        <input type="number" name="age" min="18" value="{{user.age}}">
         <br>
         <label for="telephone">Telephone</label>
-        <input type="tel" name="telephone">
+        <input type="tel" name="telephone" value="{{user.telephone}}" placeholder="Telephone Number">
         <br>
         <label for="biography">Biography</label>
         <br>
-        <textarea name="bio" rows="10" cols="70" placeholder="Write your biography"></textarea>
+        <textarea name="bio" rows="10" cols="70" placeholder="Write your biography">{{user.bio}}</textarea>
         <br>
         <label for="photo">Profile photo</label>
         <input type="file" name="photo" style="background-color: transparent">
