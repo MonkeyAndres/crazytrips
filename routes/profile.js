@@ -145,7 +145,17 @@ profileRoutes.post('/edit-password', (req,res,next)=>{
       }
     }
 })
+profileRoutes.get('/malanga', (req,res,next)=>{
+    
+    res.render('profile/crazy')
 
+})
+
+profileRoutes.get('/crazy2', (req,res,next)=>{
+    
+    res.render('profile/crazy2')
+
+})
 profileRoutes.get('/:username', (req,res,next)=>{
     User.findOne({username: req.params.username})
     .then(user => {
@@ -166,5 +176,7 @@ profileRoutes.get('/:username', (req,res,next)=>{
     })
     .catch(err => next(err));
 })
+
+
 
 module.exports=profileRoutes;
