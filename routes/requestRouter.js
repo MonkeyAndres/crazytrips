@@ -25,11 +25,7 @@ router.get("/new/:id", (req, res, next) => {
       res.redirect("/trips")
     })
 	.catch(err => next(err));	
-
-
-
 	})
-  
 });
 
 // List request that a user made
