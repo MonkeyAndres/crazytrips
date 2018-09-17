@@ -59,9 +59,9 @@ authRoutes.post("/signup", (req, res, next) => {
   });
 
   newUser.save()
-    .then(data => {
-      return sendMail(newUser)
-    })
+    // .then(data => {
+    //   return sendMail(newUser)
+    // })
     .then(() => {
       res.render("auth/signup", { message: "Check your email and confirm your account!" })
     })
